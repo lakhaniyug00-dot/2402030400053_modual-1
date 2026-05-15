@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animated Registration Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #dbeafe, #fef9c3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 900px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #000;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            transition: 0.5s;
+        }
+
+        .form-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            transition: 0.5s;
+        }
+
+        h2:hover {
+            color: crimson;
+            transform: scale(1.1);
+        }
+
+        p {
+            color: blue;
+            text-align: center;
+            font-size: 18px;
+            transition: 0.5s;
+        }
+
+        p:hover {
+            color: darkgreen;
+            letter-spacing: 1px;
+        }
+
+        .image1 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .image1 img {
+            transition: 0.5s;
+        }
+
+        .image1 img:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full-width {
+            grid-column: 1 / 3;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: 0.4s;
+        }
+
+        input:hover,
+        textarea:hover,
+        select:hover {
+            transform: translateX(5px);
+            border-color: blue;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            transform: scale(1.03);
+            box-shadow: 0px 0px 10px lightblue;
+            border-color: darkblue;
+            outline: none;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        .gender,
+        .hobbies {
+            margin-top: 10px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #afa54c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            background-color: #ff5733;
+            transform: scale(1.05) rotate(-1deg);
+            letter-spacing: 2px;
+        }
+
+        #name {
+            background-color: #fffacd;
+        }
+
+        #email {
+            background-color: #e6f7ff;
+        }
+
+        #pass {
+            background-color: #f0fff0;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+            transition: 0.4s;
+        }
+
+        a:hover {
+            color: red;
+            font-size: 20px;
+        }
+
+        video {
+            transition: 0.5s;
+        }
+
+        video:hover {
+            transform: scale(1.05);
+            border-radius: 10px;
+        }
+
+        audio {
+            transition: 0.5s;
+        }
+
+        audio:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: 1 / 2;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <marquee behavior="scroll" direction="left">
+            <h2>Registration Form</h2>
+        </marquee>
+
+        <p>Welcome to Registration Form</p>
+
+        <div class="image1">
+            <img src="image.png" alt="image" width="120" height="120">
+        </div>
+
+        <form>
+
+            <div>
+                <label>Name:</label>
+                <input type="text" name="name" id="name" placeholder="Enter your name">
+            </div>
+
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div>
+                <label>Password:</label>
+                <input type="password" name="pass" id="pass" placeholder="Enter password">
+            </div>
+
+            <div>
+                <label>Contact No.:</label>
+                <input type="tel" name="phone" id="phone" placeholder="Enter phone number">
+            </div>
+
+            <div class="full-width">
+                <label>Address:</label>
+                <textarea name="add" id="add" placeholder="Enter your address"></textarea>
+            </div>
+
+            <div>
+                <label>State:</label>
+
+                <select name="state" id="state">
+                    <option>Select State</option>
+                    <option value="GA">Gujarat</option>
+                    <option value="MH">Maharashtra</option>
+                    <option value="RJ">Rajasthan</option>
+                    <option value="DL">Delhi</option>
+                    <option value="UP">Uttar Pradesh</option>
+                    <option value="WB">West Bengal</option>
+                    <option value="TN">Tamil Nadu</option>
+                </select>
+            </div>
+
+            <div class="gender">
+                <label>Gender:</label><br><br>
+
+                <input type="radio" name="gender" value="Male"> Male
+
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <div class="hobbies full-width">
+
+                <label>Hobbies:</label><br><br>
+
+                <input type="checkbox" name="Writing"> Writing
+
+                <input type="checkbox" name="Reading"> Reading
+
+                <input type="checkbox" name="Coding"> Coding
+
+                <input type="checkbox" name="Gaming"> Gaming
+            </div>
+
+            <div class="full-width">
+                <a href="https://www.netflix.com/in/">
+                    Visit Netflix
+                </a>
+            </div>
+
+            <div>
+                <video width="100%" controls>
+                    <source src="150406-798441043_medium.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div>
+                <audio controls>
+                    <source src="porsche-105500.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <div class="full-width">
+                <button type="submit" class="btn">
+                    Register
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

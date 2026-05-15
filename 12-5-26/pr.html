@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Beautiful Registration Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            width: 450px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #5b86e5;
+            box-shadow: 0 0 8px rgba(91, 134, 229, 0.5);
+            outline: none;
+        }
+
+        #name {
+            background-color: #fff9d9;
+        }
+
+        #email {
+            background-color: #eef8ff;
+        }
+
+        #pass {
+            background-color: #f1fff1;
+        }
+
+        textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        .gender,
+        .hobbies {
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            background: linear-gradient(to right, #2ab7c0, #4a74d1);
+        }
+
+        .image1 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .image1 img {
+            border-radius: 50%;
+            border: 4px solid #5b86e5;
+            padding: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5b86e5;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #36d1dc;
+        }
+
+        video,
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <marquee behavior="" direction="left">
+            <h2>Registration Form</h2>
+        </marquee>
+
+        <p>Welcome to Registration Form</p>
+
+        <div class="image1">
+            <img src="image.png" alt="Image" width="100" height="100">
+        </div>
+
+        <iframe src="C:\Users\ADMIN\OneDrive\Desktop\html\2402030400053_modual-1\12-5-26\pr3.html" frameborder="0"
+            height="200" width="100%">
+        </iframe>
+
+        <form>
+
+            <label>Name:</label>
+            <input type="text" name="name" id="name" placeholder="Enter your name">
+
+            <label>Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+
+            <label>Password:</label>
+            <input type="password" name="pass" id="pass" placeholder="Enter password">
+
+            <label>Contact No.:</label>
+            <input type="tel" name="phone" id="phone" placeholder="Enter phone number">
+
+            <label>Address:</label>
+            <textarea name="add" id="add" placeholder="Enter your address"></textarea>
+
+            <label>State:</label>
+            <select name="state" id="state">
+                <option>Select State</option>
+                <option value="GA">Gujarat</option>
+
+
+                <option value="MH">Maharashtra</option>
+                <option value="RJ">Rajasthan</option>
+                <option value="DL">Delhi</option>
+                <option value="UP">Uttar Pradesh</option>
+                <option value="WB">West Bengal</option>
+                <option value="TN">Tamil Nadu</option>
+            </select>
+
+            <div class="gender">
+                <label>Gender:</label><br><br>
+
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <div class="hobbies">
+                <label>Hobbies:</label><br><br>
+
+                <input type="checkbox" name="Writing"> Writing <br>
+                <input type="checkbox" name="Reading"> Reading <br>
+                <input type="checkbox" name="Coding"> Coding <br>
+                <input type="checkbox" name="Gaming"> Gaming
+            </div>
+
+            <a href="https://www.netflix.com/in/">Netflix</a>
+
+            <br><br>
+
+            <video width="300" height="200" controls>
+                <source src="150406-798441043_medium.mp4" type="video/mp4">
+            </video>
+
+            <br><br>
+
+            <audio controls>
+                <source src="porsche-105500.mp3" type="audio/mpeg">
+            </audio>
+
+            <br><br>
+
+            <button type="submit" class="btn">Register</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

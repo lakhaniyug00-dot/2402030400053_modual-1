@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animated Registration Form</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #dbeafe, #fef9c3);
+        }
+
+        nav ul {
+            list-style: none;
+            overflow: hidden;
+            background: #333;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 14px 16px;
+            transition: 0.4s;
+        }
+
+        nav ul li a:hover {
+            background: #1280e7;
+            letter-spacing: 1px;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid black;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: 0.5s;
+        }
+
+        .form-container:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            text-align: center;
+            transition: 0.5s;
+        }
+
+        h2:hover {
+            color: crimson;
+            transform: scale(1.1);
+        }
+
+        p {
+            text-align: center;
+            color: blue;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .image1 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .image1 img {
+            transition: 0.5s;
+        }
+
+        .image1 img:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full-width {
+            grid-column: 1/3;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: 0.4s;
+        }
+
+        input:hover,
+        textarea:hover,
+        select:hover {
+            transform: translateX(5px);
+            border-color: blue;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            transform: scale(1.03);
+            box-shadow: 0 0 10px lightblue;
+            border-color: darkblue;
+            outline: none;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        .gender,
+        .hobbies {
+            margin-top: 10px;
+        }
+
+        #name {
+            background: #fffacd;
+        }
+
+        #email {
+            background: #e6f7ff;
+        }
+
+        #pass {
+            background: #f0fff0;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+            transition: 0.4s;
+        }
+
+        a:hover {
+            color: red;
+            font-size: 20px;
+        }
+
+        video {
+            transition: 0.5s;
+        }
+
+        video:hover {
+            transform: scale(1.05);
+        }
+
+        audio {
+            transition: 0.5s;
+        }
+
+        audio:hover {
+            transform: scale(1.05);
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            position: relative;
+            width: 180px;
+            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 3px solid #8c82fc;
+            background: white;
+            color: #8c82fc;
+            border-radius: 40px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.35s;
+        }
+
+        .btn:hover {
+            background: #8c82fc;
+            color: white;
+        }
+
+        .btn span {
+            transition: 0.35s;
+        }
+
+        .success {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.35s;
+        }
+
+        .success svg {
+            width: 25px;
+            height: 25px;
+            fill: yellowgreen;
+            transform: rotate(0deg) scale(0);
+            transition: 0.35s;
+        }
+
+        .btn.is_active {
+            width: 50px;
+            height: 50px;
+        }
+
+        .btn.is_active span {
+            opacity: 0;
+        }
+
+        .btn.is_active .success {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .btn.is_active .success svg {
+            transform: rotate(720deg) scale(1);
+        }
+
+        /* SOCIAL ICONS */
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .social-icons ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .social-icons ul li {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            font-size: 30px;
+            height: 70px;
+            width: 70px;
+            background: #171515;
+            border-radius: 50%;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .social-icons ul li:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            transform: scale(0.9);
+            z-index: -1;
+            transition: 0.5s;
+        }
+
+        .social-icons ul li:nth-child(1):before {
+            background: #4267b2;
+        }
+
+        .social-icons ul li:nth-child(2):before {
+            background: #1da1f2;
+        }
+
+        .social-icons ul li:nth-child(3):before {
+            background: #e1306c;
+        }
+
+        .social-icons ul li:nth-child(4):before {
+            background: #2867b2;
+        }
+
+        .social-icons ul li:nth-child(5):before {
+            background: #ff0000;
+        }
+
+        .social-icons ul li:hover:before {
+            transform: scale(1.2);
+            filter: blur(3px);
+        }
+
+        .social-icons ul li:nth-child(1):hover {
+            color: #4267b2;
+            box-shadow: 0 0 15px #4267b2;
+        }
+
+        .social-icons ul li:nth-child(2):hover {
+            color: #1da1f2;
+            box-shadow: 0 0 15px #1da1f2;
+        }
+
+        .social-icons ul li:nth-child(3):hover {
+            color: #e1306c;
+            box-shadow: 0 0 15px #e1306c;
+        }
+
+        .social-icons ul li:nth-child(4):hover {
+            color: #2867b2;
+            box-shadow: 0 0 15px #2867b2;
+        }
+
+        .social-icons ul li:nth-child(5):hover {
+            color: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        @media(max-width:600px) {
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: 1/2;
+            }
+
+            nav ul li {
+                float: none;
+            }
+
+            .social-icons ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .social-icons ul li {
+                margin: 10px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+
+        <div class="form-container">
+
+            <marquee>
+                <h2>Registration Form</h2>
+            </marquee>
+
+            <p>Welcome to Registration Form</p>
+
+            <div class="image1">
+                <img src="image.png" width="120" height="120">
+            </div>
+
+            <form>
+
+                <div>
+                    <label>Name:</label>
+                    <input type="text" placeholder="Enter your name">
+                </div>
+
+                <div>
+                    <label>Email:</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label>Password:</label>
+                    <input type="password" placeholder="Enter password">
+                </div>
+
+                <div>
+                    <label>Contact No:</label>
+                    <input type="tel" placeholder="Enter phone number">
+                </div>
+
+                <div class="full-width">
+                    <label>Address:</label>
+                    <textarea placeholder="Enter your address"></textarea>
+                </div>
+
+                <div>
+                    <label>State:</label>
+
+                    <select>
+                        <option>Select State</option>
+                        <option>Gujarat</option>
+                        <option>Maharashtra</option>
+                        <option>Rajasthan</option>
+                        <option>Delhi</option>
+                    </select>
+                </div>
+
+                <div class="gender">
+
+                    <label>Gender:</label><br><br>
+
+                    <input type="radio" name="gender"> Male
+
+                    <input type="radio" name="gender"> Female
+
+                </div>
+
+                <div class="hobbies full-width">
+
+                    <label>Hobbies:</label><br><br>
+
+                    <input type="checkbox"> Writing
+
+                    <input type="checkbox"> Reading
+
+                    <input type="checkbox"> Coding
+
+                    <input type="checkbox"> Gaming
+
+                </div>
+
+                <div class="full-width">
+
+                    <a href="https://www.netflix.com/in/">
+                        Visit Netflix
+                    </a>
+
+                </div>
+
+                <div>
+
+                    <video width="100%" controls>
+                        <source src="150406-798441043_medium.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div>
+
+                    <audio controls>
+                        <source src="porsche-105500.mp3" type="audio/mpeg">
+                    </audio>
+
+                </div>
+
+                <div class="full-width wrapper">
+
+                    <button type="button" class="btn" id="submitBtn">
+
+                        <span>Register</span>
+
+                        <div class="success">
+
+                            <svg version="1.1" viewBox="0 0 29.756 29.756">
+
+                                <path
+                                    d="M29.049,5.009L28.19,4.151c-0.943-0.945-2.488-0.945-3.434,0L10.172,18.737l-5.175-5.173c-0.943-0.944-2.489-0.944-3.432,0.001l-0.858,0.857c-0.943,0.944-0.943,2.489,0,3.433l7.744,7.752c0.944,0.943,2.489,0.943,3.433,0L29.049,8.442C29.991,7.498,29.991,5.953,29.049,5.009z" />
+
+                            </svg>
+
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- SOCIAL ICONS -->
+
+            <div class="social-icons">
+
+                <ul>
+
+                    <li>
+                        <i class="fab fa-facebook-f"></i>
+                    </li>
+
+                    <li>
+                        <i class="fab fa-twitter"></i>
+                    </li>
+
+                    <li>
+                        <i class="fab fa-instagram"></i>
+                    </li>
+
+                    <li>
+                        <i class="fab fa-linkedin-in"></i>
+                    </li>
+
+                    <li>
+                        <i class="fab fa-youtube"></i>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let btn = document.querySelector("#submitBtn");
+
+        btn.addEventListener("click", function () {
+
+            btn.classList.toggle("is_active");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
