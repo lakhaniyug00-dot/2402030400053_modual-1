@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Registration Form</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+
+            background: linear-gradient(-45deg,
+                    #ff6b6b,
+                    #6c5ce7,
+                    #00cec9,
+                    #0984e3);
+
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+        }
+
+        .registration-form {
+
+            background: rgba(255, 255, 255, 0.15);
+
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            backdrop-filter: blur(15px);
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.2);
+
+            color: white;
+
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .registration-form h2 {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+            font-size: 38px;
+
+            font-weight: 600;
+        }
+
+        .registration-form h2 i {
+
+            color: #ffeaa7;
+
+            margin-right: 10px;
+        }
+
+        .input-box {
+            margin-bottom: 22px;
+        }
+
+        .input-box label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 15px;
+
+            font-weight: 500;
+        }
+
+        .input-field {
+            position: relative;
+        }
+
+        .input-field i {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 15px;
+
+            transform: translateY(-50%);
+
+            color: #555;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 15px 15px 15px 48px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            transition: 0.4s;
+        }
+
+        textarea {
+
+            resize: none;
+
+            padding-left: 15px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            transform: scale(1.03);
+
+            box-shadow:
+                0 0 10px #fff,
+                0 0 20px #74b9ff;
+
+            background: white;
+        }
+
+        ::placeholder {
+            color: #777;
+        }
+
+        .gender-box,
+        .hobby-box {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+        }
+
+        .gender-box label,
+        .hobby-box label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+        }
+
+        input[type="file"] {
+
+            background: rgba(255, 255, 255, 0.9);
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            color: #333;
+        }
+
+        .button-group {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        button {
+
+            flex: 1;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.4s;
+        }
+
+        .submit-btn {
+
+            background: linear-gradient(45deg, #00b894, #00cec9);
+
+            color: white;
+        }
+
+        .submit-btn:hover {
+
+            transform: translateY(-4px);
+        }
+
+        .reset-btn {
+
+            background: linear-gradient(45deg, #ff7675, #d63031);
+
+            color: white;
+        }
+
+        .reset-btn:hover {
+
+            transform: translateY(-4px);
+        }
+
+        @media (max-width: 768px) {
+
+            .registration-form {
+                padding: 25px;
+            }
+
+            .registration-form h2 {
+                font-size: 28px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .gender-box,
+            .hobby-box {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* SUCCESS POPUP */
+
+        .success-popup {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.6);
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 1000;
+        }
+
+        .success-box {
+
+            width: 90%;
+            max-width: 500px;
+
+            padding: 50px 35px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.25);
+
+            animation: popupFade 0.6s ease;
+
+            color: white;
+        }
+
+        @keyframes popupFade {
+
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+
+            font-size: 80px;
+
+            margin-bottom: 20px;
+
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .success-box h1 {
+
+            font-size: 42px;
+
+            margin-bottom: 15px;
+        }
+
+        .success-box p {
+
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .close-btn {
+
+            padding: 14px 30px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #0984e3;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.4s;
+        }
+
+        .close-btn:hover {
+
+            transform: translateY(-4px);
+
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form class="registration-form" id="registrationForm">
+
+            <h2>
+                <i class="fa-solid fa-user-plus"></i>
+                Registration Form
+            </h2>
+
+            <!-- Full Name -->
+
+            <div class="input-box">
+                <label for="fullname">Full Name</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+
+                    <input type="text" id="fullname" placeholder="Enter your full name" required>
+                </div>
+            </div>
+
+            <!-- Age -->
+
+            <div class="input-box">
+                <label for="age">Age</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <input type="number" id="age" placeholder="Enter your age" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+
+            <div class="input-box">
+                <label for="email">Email Address</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+            </div>
+
+            <!-- Mobile -->
+
+            <div class="input-box">
+                <label for="mobile">Mobile Number</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input type="tel" id="mobile" placeholder="Enter mobile number" required>
+                </div>
+            </div>
+
+            <!-- Gender -->
+
+            <div class="input-box">
+                <label>Gender</label>
+
+                <div class="gender-box">
+
+                    <label>
+                        <input type="radio" name="gender" required>
+                        Male
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender">
+                        Female
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender">
+                        Other
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Hobbies -->
+
+            <div class="input-box">
+                <label>Hobbies</label>
+
+                <div class="hobby-box">
+
+                    <label>
+                        <input type="checkbox">
+                        Reading
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Coding
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Music
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Gaming
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- City -->
+
+            <div class="input-box">
+                <label for="city">City</label>
+
+                <select id="city" required>
+
+                    <option value="">Select City</option>
+                    <option>Ahmedabad</option>
+                    <option>Surat</option>
+                    <option>Rajkot</option>
+                    <option>Vadodara</option>
+
+                </select>
+            </div>
+
+            <!-- Address -->
+
+            <div class="input-box">
+                <label for="address">Address</label>
+
+                <textarea id="address" rows="4" placeholder="Enter your address"></textarea>
+            </div>
+
+            <!-- State -->
+
+            <div class="input-box">
+                <label for="state">State</label>
+
+                <select id="state" required>
+
+                    <option value="">Select State</option>
+                    <option>Gujarat</option>
+                    <option>Maharashtra</option>
+                    <option>Rajasthan</option>
+                    <option>Delhi</option>
+
+                </select>
+            </div>
+
+            <!-- Birthday -->
+
+            <div class="input-box">
+                <label for="birthday">Birthday</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-cake-candles"></i>
+
+                    <input type="date" id="birthday">
+                </div>
+            </div>
+
+            <!-- Password -->
+
+            <div class="input-box">
+                <label for="password">Password</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+
+            <div class="input-box">
+                <label for="confirmPassword">Confirm Password</label>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                </div>
+            </div>
+
+            <!-- Upload Photo -->
+
+            <div class="input-box">
+                <label>Upload Profile Photo</label>
+
+                <input type="file" accept="image/*">
+            </div>
+
+            <!-- Upload PDF -->
+
+            <div class="input-box">
+                <label>Upload PDF Document</label>
+
+                <input type="file" accept=".pdf">
+            </div>
+
+            <!-- Buttons -->
+
+            <div class="button-group">
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Submit
+                </button>
+
+                <button type="reset" class="reset-btn">
+                    <i class="fa-solid fa-rotate"></i>
+                    Reset
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- SUCCESS POPUP -->
+
+    <div class="success-popup" id="successPopup">
+
+        <div class="success-box">
+
+            <div class="success-icon">
+                🎉
+            </div>
+
+            <h1>
+                Registration Successful
+            </h1>
+
+            <p>
+                Welcome to our website.
+            </p>
+
+            <button class="close-btn" onclick="closePopup()">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const form = document.getElementById("registrationForm");
+
+        form.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            let password = document.getElementById("password").value;
+
+            let confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            // PASSWORD CHECK
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match!");
+
+                return;
+            }
+
+            // GET FORM DATA
+
+            let fullName = document.getElementById("fullname").value;
+            let age = document.getElementById("age").value;
+            let email = document.getElementById("email").value;
+            let mobile = document.getElementById("mobile").value;
+            let city = document.getElementById("city").value;
+            let address = document.getElementById("address").value;
+            let state = document.getElementById("state").value;
+            let birthday = document.getElementById("birthday").value;
+
+            // GET GENDER
+
+            let gender = document.querySelector('input[name="gender"]:checked');
+
+            // GET HOBBIES
+
+            let hobbies = [];
+
+            document.querySelectorAll('.hobby-box input[type="checkbox"]:checked')
+                .forEach((checkbox) => {
+
+                    hobbies.push(
+                        checkbox.parentElement.textContent.trim()
+                    );
+
+                });
+
+            // STORE DATA OBJECT
+
+            let userData = {
+
+                fullName: fullName,
+                age: age,
+                email: email,
+                mobile: mobile,
+                gender: gender ? gender.parentElement.textContent.trim() : "",
+                hobbies: hobbies,
+                city: city,
+                address: address,
+                state: state,
+                birthday: birthday,
+                password: password
+
+            };
+
+            // PRINT DATA IN CONSOLE
+
+            console.log("Registration Data");
+            console.log(userData);
+
+            // SHOW SUCCESS POPUP
+
+            document.getElementById("successPopup").style.display = "flex";
+
+            // REDIRECT AFTER 2 SECONDS
+
+            setTimeout(() => {
+
+                window.location.href = "netflix.html";
+
+            }, 2000);
+
+        });
+
+        // CLOSE POPUP
+
+        function closePopup() {
+
+            document.getElementById("successPopup").style.display = "none";
+
+            window.location.href = "netflix.html";
+        }
+
+    </script>
+
+</body>
+
+</html>
