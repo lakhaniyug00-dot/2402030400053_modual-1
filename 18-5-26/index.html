@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitflix — Watch Anywhere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="logo">NITFLIX</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#trailers">Trailers</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#faq">Frequently Asked</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="btn-sign-in" onclick="openModal('signin')">Sign In</button>
+            <button class="btn-register" onclick="goToRegister()">Registration</button>
+            <div class="wishlist-nav" onclick="toggleWishlist()">
+                ❤️ Wishlist <span id="wishlist-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1600&q=80">
+                <source src="https://videos.pexels.com/video-files/2795405/2795405-uhd_2560_1440_25fps.mp4"
+                    type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
+            <div class="hero-tag">🔥 Now Streaming</div>
+            <h1>Unlimited <span>Movies</span>,<br>TV Shows & More</h1>
+            <p>Stream anywhere. Cancel anytime. No hidden fees.<br>Thousands of titles in stunning 4K.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="openModal('signup')">Get Started Free</button>
+                <button class="btn-secondary" onclick="openVideo('Way9Dexny3w','Dune: Part Two','Official Trailer')">▶
+                    Watch Trailer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRENDING -->
+    <section class="section reveal">
+        <div class="section-title">🔥 Trending Now</div>
+        <div class="row" id="trending-row"></div>
+    </section>
+
+    <!-- FEATURED BANNER -->
+    <div class="featured reveal">
+        <img class="feat-bg" src="https://images.unsplash.com/photo-1534809027769-b00d750a6bac?w=1400&q=80"
+            alt="Edge of the Horizon">
+        <div class="featured-overlay">
+            <div class="featured-label">✦ Nitflix Original</div>
+            <h2>Edge of the<br>Horizon</h2>
+            <p>A sweeping epic about survival, love, and the uncharted territories of the human spirit. Winner of 3
+                awards.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <button class="btn-primary">▶ Play Now</button>
+                <button class="btn-secondary"
+                    onclick="openVideo('LXb3EKWsInQ','Edge of the Horizon','Official Trailer — 2025')">📽
+                    Trailer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP PICKS -->
+    <section class="section reveal">
+        <div class="section-title">⭐ Top Picks for You</div>
+        <div class="row" id="picks-row"></div>
+    </section>
+
+    <!-- TRAILERS -->
+    <section class="trailers-section reveal" id="trailers">
+        <div class="section-title">🎬 Watch Trailers</div>
+        <div class="trailers-grid" id="trailers-grid"></div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section reveal" id="gallery">
+        <div class="section-title">📸 Behind the Scenes</div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- FEATURES -->
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <div class="feature-icon">📺</div>
+            <h3>Any Screen</h3>
+            <p>Watch on TV, tablet, phone or laptop — your content follows you everywhere.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">⬇️</div>
+            <h3>Download & Go</h3>
+            <p>Save your favourites offline and watch without Wi-Fi.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">👨‍👩‍👧</div>
+            <h3>Family Profiles</h3>
+            <p>Up to 5 individual profiles with personalised recommendations.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">🎬</div>
+            <h3>4K Ultra HD</h3>
+            <p>Cinema-grade resolution on supported titles and devices.</p>
+        </div>
+    </div>
+
+    <!-- PLANS -->
+    <section class="plans reveal" id="plans">
+        <h2 class="section-title">Choose Your Plan</h2>
+        <div class="plans-grid">
+            <div class="plan">
+                <div class="plan-name">Basic</div>
+                <div class="plan-price"><sup>₹</sup>149<span>/mo</span></div>
+                <div class="plan-desc">Great for solo watching.</div>
+                <ul>
+                    <li>Full HD (1080p)</li>
+                    <li>1 screen at a time</li>
+                    <li>Mobile &amp; tablet</li>
+                    <li>Cancel anytime</li>
+                </ul>
+                <button class="btn-secondary">Get Basic</button>
+            </div>
+            <div class="plan popular">
+                <div class="plan-name">Standard</div>
+                <div class="plan-price"><sup>₹</sup>499<span>/mo</span></div>
+                <div class="plan-desc">Perfect for couples.</div>
+                <ul>
+                    <li>Full HD (1080p)</li>
+                    <li>2 screens at a time</li>
+                    <li>All devices</li>
+                    <li>Downloads included</li>
+                </ul>
+                <button class="btn-primary">Get Standard</button>
+            </div>
+            <div class="plan">
+                <div class="plan-name">Premium</div>
+                <div class="plan-price"><sup>₹</sup>799<span>/mo</span></div>
+                <div class="plan-desc">Best for families.</div>
+                <ul>
+                    <li>4K Ultra HD + HDR</li>
+                    <li>4 screens at a time</li>
+                    <li>All devices</li>
+                    <li>Spatial Audio</li>
+                </ul>
+                <button class="btn-secondary">Get Premium</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq reveal" id="faq">
+        <h2 class="section-title">Frequently Asked</h2>
+        <div class="faq-list" id="faq-list"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta reveal">
+        <h2>Ready to Watch?</h2>
+        <p>Enter your email to create or restart your membership.</p>
+        <div class="email-form">
+            <input type="email" placeholder="your@email.com">
+            <button class="btn-primary" onclick="openModal('signup')">Get Started</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Blog</a>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <a href="#">Help Center</a><a href="#">Account</a><a href="#">Media Center</a><a href="#">Device
+                    Support</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a><a href="#">Terms of Use</a><a href="#">Cookie Prefs</a><a href="#">Legal
+                    Notices</a>
+            </div>
+            <div class="footer-col">
+                <h4>Social</h4>
+                <a href="#">Instagram</a><a href="#">Twitter / X</a><a href="#">YouTube</a><a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">NITFLIX</div>
+            <div class="footer-copy">© 2026 Nitflix. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="video-modal">
+        <div class="video-modal-inner">
+            <button class="video-close" onclick="closeVideo()">✕</button>
+            <iframe id="yt-frame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-title-bar">
+                <h3 id="vt-title"></h3>
+                <p id="vt-sub"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" onclick="closeLightbox()">✕</button>
+        <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8249;</button>
+        <img id="lb-img" src="" alt="Gallery">
+        <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div class="modal-backdrop" id="modal-backdrop" onclick="closeModalOutside(event)">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 id="modal-title">Sign In</h2>
+            <input type="email" placeholder="Email address">
+            <input type="password" placeholder="Password">
+            <div id="modal-name-wrap" style="display:none"><input type="text" placeholder="Your name"></div>
+            <button class="btn-primary" id="modal-btn">Sign In</button>
+            <div class="modal-switch" id="modal-switch">
+                New to Nitflix? <a onclick="switchModal()">Create an account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT MODAL -->
+    <div class="modal-backdrop" id="payment-backdrop">
+        <div class="modal">
+            <button class="modal-close" onclick="closePayment()">✕</button>
+            <h2>Select Payment</h2>
+            <input type="text" id="cardName" placeholder="Card Holder Name">
+            <input type="text" id="cardNumber" placeholder="Card Number">
+            <input type="text" id="expiry" placeholder="MM/YY">
+            <input type="password" id="cvv" placeholder="CVV">
+            <button class="btn-primary" id="payNowBtn">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- WISHLIST PANEL -->
+    <div class="wishlist-panel" id="wishlist-panel">
+        <div class="wishlist-header">
+            <h2>My Wishlist</h2>
+            <button class="close-wishlist" onclick="toggleWishlist()">✕</button>
+        </div>
+        <div id="wishlist-items"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
