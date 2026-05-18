@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1218,6 +1220,14 @@
             transform: scale(1.04);
         }
 
+        /* PAYMENT SUCCESS */
+        .success-message {
+            color: #46d369;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
         @media(max-width:600px) {
             .nav-links {
                 display: none;
@@ -1262,16 +1272,22 @@
 <body>
 
     <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <nav id="navbar">
         <div class="logo">NITFLIX</div>
+
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#trailers">Trailers</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#plans">Plans</a></li>
+            <li><a href="#faq">Frequently Asked</a></li>
         </ul>
+
         <div class="nav-right">
-            <button class="btn-sign-in" onclick="openModal('signin')">Sign In</button>
+            <button class="btn-sign-in" onclick="openModal('signin')">
+                Sign In
+            </button>
 
             <button class="btn-register" onclick="goToRegister()">
                 Registration
@@ -1407,7 +1423,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="faq reveal">
+    <section class="faq reveal" id="faq">
         <h2 class="section-title">Frequently Asked</h2>
         <div class="faq-list" id="faq-list"></div>
     </section>
@@ -1478,6 +1494,26 @@
             <button class="btn-primary" id="modal-btn">Sign In</button>
             <div class="modal-switch" id="modal-switch">New to Nitflix? <a onclick="switchModal()">Create an account</a>
             </div>
+        </div>
+    </div>
+    <!-- PAYMENT MODAL -->
+    <div class="modal-backdrop" id="payment-backdrop">
+        <div class="modal">
+            <button class="modal-close" onclick="closePayment()">✕</button>
+
+            <h2>Select Payment</h2>
+
+            <input type="text" id="cardName" placeholder="Card Holder Name">
+
+            <input type="text" id="cardNumber" placeholder="Card Number">
+
+            <input type="text" id="expiry" placeholder="MM/YY">
+
+            <input type="password" id="cvv" placeholder="CVV">
+
+            <button class="btn-primary" id="payNowBtn">
+                Pay Now
+            </button>
         </div>
     </div>
 
@@ -1662,6 +1698,72 @@
         function goToRegister() {
             window.location.href = "web.html";
         }
+        // ───────── EXISTING CODE ─────────
+
+        // PLAN BUTTON CLICK
+        $('.plan button').click(function () {
+
+            let planName = $(this).closest('.plan').find('.plan-name').text();
+            let planPrice = $(this).closest('.plan').find('.plan-price').text();
+
+            $('#payment-backdrop').addClass('show');
+
+            console.log("Selected Plan:", planName);
+            console.log("Price:", planPrice);
+        });
+
+        // CLOSE PAYMENT
+        function closePayment() {
+            $('#payment-backdrop').removeClass('show');
+        }
+
+        // PAYMENT BUTTON
+        $('#payNowBtn').click(function () {
+
+            let name = $('#cardName').val();
+            let card = $('#cardNumber').val();
+            let expiry = $('#expiry').val();
+            let cvv = $('#cvv').val();
+
+            if (name === "" || card === "" || expiry === "" || cvv === "") {
+
+                alert("Please fill all payment details");
+
+            } else {
+
+                console.log("=== PAYMENT DETAILS ===");
+                console.log("Card Holder:", name);
+                console.log("Card Number:", card);
+                console.log("Expiry:", expiry);
+                console.log("CVV:", cvv);
+
+                $('.modal').append(
+                    '<div class="success-message">Payment Successful ✅</div>'
+                );
+
+                setTimeout(() => {
+
+                    closePayment();
+
+                    $('.success-message').remove();
+
+                    $('#cardName').val('');
+                    $('#cardNumber').val('');
+                    $('#expiry').val('');
+                    $('#cvv').val('');
+
+                }, 2000);
+            }
+        });
+
+        // CLOSE ON OUTSIDE CLICK
+        $('#payment-backdrop').click(function (e) {
+
+            if (e.target.id === 'payment-backdrop') {
+                closePayment();
+            }
+
+        });
     </script>
 </body>
 
